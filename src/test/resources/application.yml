@@ -1,0 +1,30 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    contextPath: /api
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: aws-archiver
+  jpa:
+    generate-ddl: false
+    hibernate.ddl-auto: validate #update #create
+    open-in-view: false
+    properties:
+      hibernate:
+        schema_update.unique_constraint_strategy: RECREATE_QUIETLY
+        jdbc:
+          lob.non_contextual_creation: true
+          time_zone: UTC
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
+    hikari.maximum-pool-size: 5
+  liquibase:
+    enabled: true
+    changelog: /db/changelog/changelog.groovy
