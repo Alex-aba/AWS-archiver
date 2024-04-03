@@ -1,3 +1,5 @@
-package db.changelogs
+package db.changelog
 
-databaseChangeLog {}
+databaseChangeLog {
+    include(file: 'db/changelog/changeset_1.groovy')
+}
